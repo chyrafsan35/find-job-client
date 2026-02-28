@@ -7,6 +7,8 @@ import { router } from './router/router.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <div className='bg-white text-black dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-300'>
+      <RouterProvider router={router} />
+    </div>
   </StrictMode>,
 )

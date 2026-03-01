@@ -27,6 +27,11 @@
     border: 1px solid black;
 }
 
+#theme-dark {
+    background: black;
+    border: 1px solid white;
+}
+
 #theme-tomato {
     background: tomato;
     border: 1px solid white;

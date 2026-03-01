@@ -9,7 +9,7 @@ const Home = () => {
             <div className="w-11/12 sm:w-3/4 lg:w-1/2 mx-auto mt-10">
 
                 {/* Input Container */}
-                <div className="flex flex-col md:flex-row bg-transparent border border-gray-600 rounded-xl md:rounded-full shadow-md overflow-hidden">
+                <div className="flex flex-col md:flex-row bg-transparent border  rounded-xl md:rounded-full shadow-md overflow-hidden">
 
                     {/* First Input */}
                     <div className="flex items-center px-4 py-3 flex-1">

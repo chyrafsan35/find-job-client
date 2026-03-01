@@ -40,4 +40,15 @@ body {
   background-color: var(--body-bg);
   color: var(--body-color);
   transition: background-color 0.5s ease, color 0.5s ease;
+  border-color: var(--body-color);
+}
+
+input {
+  color: var(--body-color);
+  background-color: transparent;
+}
+
+input::placeholder {
+  color: var(--body-color);
+  opacity: 1;
 }

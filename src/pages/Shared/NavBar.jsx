@@ -28,9 +28,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end flex gap-3">
-                        <ThemeToggle theme={'light'}></ThemeToggle>
-                        <ThemeToggle theme={'dark'}></ThemeToggle>
-                        <ThemeToggle theme={'tomato'}></ThemeToggle>
+                        <ThemeToggle></ThemeToggle>
                     </div>
                 </div>
             </div>

@@ -6,9 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
 @import "tailwindcss";
- @plugin "daisyui" {
-   themes: light --default;
- }
+@plugin "daisyui";
 
 .patmos {
   font-family: "Betania Patmos In", cursive;
@@ -39,4 +37,7 @@
 
 body {
   font-family: "Ubuntu", sans-serif;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }

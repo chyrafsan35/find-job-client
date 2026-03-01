@@ -1,0 +1,33 @@
+:root {
+    --body-bg: white;
+    --body-color: black;
+}
+
+[data-theme="dark"] {
+    --body-bg: black;
+    --body-color: white;
+    
+}
+
+[data-theme="tomato"] {
+    --body-bg: tomato;
+    --body-color: white;
+}
+
+.theme-opt {
+    height: 25px;
+    width: 25px;
+    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#theme-light {
+    background: white;
+    border: 1px solid black;
+}
+
+#theme-tomato {
+    background: tomato;
+    border: 1px solid white;
+}

@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import ThemeToggle from '../../components/ThemeToggle';
+import Logo from '../../components/Logo';
 
 const NavBar = () => {
+
+    const links = <>
+        <li><NavLink to={'login'}>Login</NavLink></li>
+        <li><NavLink to={'register'}>Register</NavLink></li>
+    </>
+
     return (
         <div>
             <div className="shadow-sm">
@@ -15,16 +22,14 @@ const NavBar = () => {
                             <ul
                                 tabIndex="-1"
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 3</a></li>
+                                {links}
                             </ul>
                         </div>
-                        <Link to={'/'} className="font-medium text-xl">findJOB</Link>
+                        <Logo className="text-xl"></Logo>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
+                            {links}
                         </ul>
                     </div>
                     <div className="navbar-end flex gap-3">

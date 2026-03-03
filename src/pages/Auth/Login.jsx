@@ -70,13 +70,13 @@ const Login = () => {
                                     Login
                                 </button>
 
-                                <p className="text-gray-300 text-sm text-center mt-2">
-                                    New here?{" "}
-                                    <Link className="text-blue-500 hover:underline" state={location.state} to="/register">
-                                        Register
-                                    </Link>
-                                </p>
                             </form>
+                            <p className="text-gray-300 text-sm text-center mt-2">
+                                New here?{" "}
+                                <Link className="text-blue-500 hover:underline" state={location.state} to="/register">
+                                    Register
+                                </Link>
+                            </p>
                         </div>
                     </div>
 

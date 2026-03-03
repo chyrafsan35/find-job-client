@@ -56,7 +56,7 @@ const Register = () => {
                     <div className="flex flex-col justify-center items-center md:items-start  p-5 ">
                         <Logo className="text-5xl mb-4" />
                         <h2 className="text-2xl font-semibold mb-2">Welcome back!</h2>
-                        <p className="opacity-90 my-8 text-center">Find the job made for you</p>
+                        <p className="opacity-90 my-8 text-center">Ready to take the next step?</p>
 
                         <div className='w-full max-w-md bg-white/10 p-5 rounded-xl shadow-lg'>
                             <FormAuth

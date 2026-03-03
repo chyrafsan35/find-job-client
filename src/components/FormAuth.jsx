@@ -9,7 +9,8 @@ const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText
         setShowPassword(prev => ({
             ...prev,
             [name]: !prev[name]
-        }))
+        }));
+        console.log(showPassword)
     }
 
     return (
@@ -21,7 +22,7 @@ const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText
                         <div className='relative'>
                             <input type={
                                 field.type === "password" ?
-                                (setShowPassword[field.name] ? "text" : "password")
+                                (showPassword[field.name] ? "text" : "password")
                                 :
                                 field.type
                             }
@@ -32,12 +33,12 @@ const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText
 
                             {field.type === "password" && (
                                 showPassword[field.name] ? (
-                                    <FaEyeSlash
+                                    <FaEye
                                     onClick={() => togglePassword(field.name)}
                                     className="absolute right-4 top-3 cursor-pointer"
                                     />
                                 ) : (
-                                    <FaEye
+                                    <FaEyeSlash
                                     onClick={() => togglePassword(field.name)}
                                     className="absolute right-4 top-3 cursor-pointer"
                                     />

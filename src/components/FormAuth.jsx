@@ -33,12 +33,12 @@ const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText
 
                             {field.type === "password" && (
                                 showPassword[field.name] ? (
-                                    <FaEye
+                                    <FaEyeSlash
                                     onClick={() => togglePassword(field.name)}
                                     className="absolute right-4 top-3 cursor-pointer"
                                     />
                                 ) : (
-                                    <FaEyeSlash
+                                    <FaEye
                                     onClick={() => togglePassword(field.name)}
                                     className="absolute right-4 top-3 cursor-pointer"
                                     />

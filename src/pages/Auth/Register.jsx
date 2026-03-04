@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import FormAuth from '../../components/FormAuth';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import Logo from '../../components/Logo';
 import banner from '../../assets/login_pg.png';
 
@@ -9,6 +9,7 @@ const Register = () => {
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const password = watch("password");
+    const location = useLocation();
 
     const handleRegister = (data) => {
         console.log(data);
@@ -28,6 +29,18 @@ const Register = () => {
             type: "email",
             placeholder: "Enter your email",
             validation: { required: "Email is required" }
+        },
+        {
+            name: "role",
+            label: "Select Role",
+            type: "select",
+            defaultValue: "",
+            validation: { required: "Role is required" },
+            options: [
+                { value: "", label: "Select Role", disabled: true },
+                { value: "candidate", label: "Candidate" },
+                { value: "recruiter", label: "Recruiter" }
+            ]
         },
         {
             name: "password",
@@ -55,8 +68,7 @@ const Register = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5">
                     <div className="flex flex-col justify-center items-center md:items-start  p-5 ">
                         <Logo className="text-5xl mb-4" />
-                        <h2 className="text-2xl font-semibold mb-2">Welcome back!</h2>
-                        <p className="opacity-90 my-8 text-center">Ready to take the next step?</p>
+                        <p className="opacity-90 mt-4 mb-2 text-center">Ready to take the next step?</p>
 
                         <div className='w-full max-w-md bg-white/10 p-5 rounded-xl shadow-lg'>
                             <FormAuth

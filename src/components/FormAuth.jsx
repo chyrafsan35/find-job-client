@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText = "Submit" }) => {
+const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, loading, loadingText, buttonText = "Submit" }) => {
 
     const [showPassword, setShowPassword] = useState({});
 
@@ -76,7 +76,19 @@ const FormAuth = ({ register, handleSubmit, errors, onSubmit, fields, buttonText
                 ))}
 
                 <button type='submit' className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition">
-                    {buttonText}
+                    {
+                        loading ? 
+                        (
+                            <span className="flex items-center justify-center gap-2">
+                                <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
+                                {loadingText}
+                            </span>
+                        )
+                        :
+                        (
+                            buttonText
+                        )
+                    }
                 </button>
 
             </form>

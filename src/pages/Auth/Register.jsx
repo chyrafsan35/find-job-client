@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormAuth from '../../components/FormAuth';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Logo from '../../components/Logo';
 import banner from '../../assets/login_pg.png';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const password = watch("password");
     const location = useLocation();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const { registerUser } = useAuth();
 
-    const handleRegister = (data) => {
-        console.log(data);
+    const handleRegister = async (data) => {
+        setLoading(true);
+        await registerUser(data.email, data.password)
+            .then(result => {
+                console.log('User registered', result);
+                navigate(location?.state || '/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
     };
 
     const registerFields = [
@@ -77,6 +92,8 @@ const Register = () => {
                                 errors={errors}
                                 onSubmit={handleRegister}
                                 fields={registerFields}
+                                loading={loading}
+                                loadingText="Creating Account..."
                                 buttonText='Create Account'
                             ></FormAuth>
                             <p className="text-gray-300 text-sm text-center mt-2">

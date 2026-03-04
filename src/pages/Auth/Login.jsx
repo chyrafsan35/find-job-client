@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Logo from '../../components/Logo';
 import banner from '../../assets/login_pg.png';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router';
 import FormAuth from '../../components/FormAuth';
 import useAuth from '../../hooks/useAuth';

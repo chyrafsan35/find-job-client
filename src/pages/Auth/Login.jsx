@@ -3,21 +3,60 @@ import Logo from '../../components/Logo';
 import banner from '../../assets/login_pg.png';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import FormAuth from '../../components/FormAuth';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [toggle, setToggle] = useState(true);
     const location = useLocation();
+    const navigate = useNavigate();
+    const [ loading, setLoading ] = useState(false);
+    const [ authError, setAuthError ] = useState("");
+    const { signInUser } = useAuth();
 
-    const handleLogin = (data) => {
-        console.log(data)
+    const handleLogin = async (data) => {
+        setLoading(true);
+        setAuthError("");
+        await signInUser(data.email, data.password)
+            .then(result => {
+                console.log('User logged in', result)
+                navigate(location?.state || '/')
+            })
+            .catch(error => {
+                console.log(error);
+                if(error.code === 'auth/invalid-credential'){
+                    setAuthError("Invalid email or password")
+                }else{
+                    setAuthError("Something went wrong. Try again.");
+                }
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
     }
 
-    const handleToggle = () => {
-        setToggle(!toggle)
-    }
+    const loginFields = [
+        {
+            name: "email",
+            label: "Email",
+            type: "email",
+            placeholder: "Enter email",
+            validation: {
+                required: "Email is required"
+            }
+        },
+        {
+            name: "password",
+            label: "Password",
+            type: "password",
+            placeholder: "Enter password",
+            validation: {
+                required: "Password is required"
+            }
+        }
+    ];
 
     return (
         <div className='flex justify-center items-center min-h-screen'>
@@ -29,48 +68,21 @@ const Login = () => {
                         <p className="opacity-90 my-8 text-center">Find the job made for you</p>
 
                         <div className="w-full max-w-md bg-white/10 p-5 rounded-xl shadow-lg">
-                            <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col space-y-4">
-                                <div>
-                                    <label className="mb-1 block">Email</label>
-                                    <input
-                                        type="email"
-                                        {...register("email", { required: true })}
-                                        className="w-full px-4 py-2 rounded-lg opacity-50 border text-white focus:ring-2 focus:ring-blue-500"
-                                        placeholder="Enter email"
-                                    />
-                                    {errors.email && <p className="text-red-500 mt-1">Email is required</p>}
-                                </div>
-
-                                <div>
-                                    <label className="mb-1 block">Password</label>
-                                    <div className="relative">
-                                        <input
-                                            {...register("password", { required: true })}
-                                            type={toggle ? "password" : "text"}
-                                            className="w-full px-4 py-2 rounded-lg opacity-50 border text-white focus:ring-2 focus:ring-blue-500"
-                                            placeholder="Enter password"
-                                        />
-                                        {toggle ? (
-                                            <FaEye
-                                                onClick={handleToggle}
-                                                className="absolute right-4 top-2.5 cursor-pointer"
-                                            />
-                                        ) : (
-                                            <FaEyeSlash
-                                                onClick={handleToggle}
-                                                className="absolute right-4 top-2.5 cursor-pointer"
-                                            />
-                                        )}
-                                    </div>
-                                    {errors.password && <p className="text-red-500 mt-1">Password is required</p>}
-                                    <a className="text-blue-500 hover:underline text-sm mt-1 block">Forgot password?</a>
-                                </div>
-
-                                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition">
-                                    Login
-                                </button>
-
-                            </form>
+                            <FormAuth
+                                register={register}
+                                handleSubmit={handleSubmit}
+                                errors={errors}
+                                onSubmit={handleLogin}
+                                fields={loginFields}
+                                loading={loading}
+                                loadingText={'Logging in...'}
+                                buttonText='Login'
+                            ></FormAuth>
+                            {authError && (
+                                <p className="text-red-500 text-sm mt-3 text-center">
+                                    {authError}
+                                </p>
+                            )}
                             <p className="text-gray-300 text-sm text-center mt-2">
                                 New here?{" "}
                                 <Link className="text-blue-500 hover:underline" state={location.state} to="/register">

@@ -2,6 +2,7 @@ import React from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import Button1 from '../../components/Button1';
 import Logo from '../../components/Logo';
+import { Link } from 'react-router';
 
 const UserEntry = () => {
     return (
@@ -10,7 +11,7 @@ const UserEntry = () => {
             <p className='my-2 font-semibold text-2xl'>Your next job starts here</p>
             <span>Create an account or sign in to see your personalized job recommendations.</span>
             <div className='my-6 flex justify-center'>
-                <Button1>Get Started <FaLongArrowAltRight /></Button1>
+                <Button1><Link className='flex items-center gap-2' to={'/register'}>Get Started <FaLongArrowAltRight /></Link></Button1>
             </div>
         </div>
     );

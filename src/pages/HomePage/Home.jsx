@@ -37,7 +37,7 @@ const Home = () => {
 
                     {/* Desktop Button (Inside) */}
                     <div className="hidden md:flex items-center">
-                        <button className="bg-blue-600 text-white px-6 py-3 hover:bg-blue-700 transition rounded-full cursor-pointer font-semibold">
+                        <button className="bg-teal-600 text-white px-6 py-3 hover:bg-teal-700 transition rounded-full cursor-pointer font-semibold">
                             Search
                         </button>
                     </div>
